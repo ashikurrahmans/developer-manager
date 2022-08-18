@@ -10,7 +10,7 @@ const Navbar = () => {
             <h1 className="leading-none text-2xl text-grey-darkest">
               <Link
                 className="no-underline text-grey-darkest hover:text-black text-semibold"
-                to="#"
+                to="/"
               >
                 Developers
               </Link>

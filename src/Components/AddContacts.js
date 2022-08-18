@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -25,11 +25,16 @@ const AddContacts = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
   const onSubmit = (data) => console.log(data);
+
+  useEffect(() => {
+    setValue("dateOfBirth", startDate);
+  });
 
   return (
     <div>
@@ -95,6 +100,8 @@ const AddContacts = () => {
               <div>
                 <DatePicker
                   selected={startDate}
+                  id="dateOfBirth"
+                  name="dateOfBirth"
                   placeholderText="Choose birthday"
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500"
                   {...register("date")}
@@ -124,10 +131,11 @@ const AddContacts = () => {
                 <h2 className="font-semibold"> Gender : </h2>
                 <div className="">
                   <input
+                    defaultChecked
                     id="default-radio-1"
                     type="radio"
-                    value=""
-                    name="default-radio"
+                    value="male"
+                    name="male"
                     className="w-4 "
                     {...register("gender")}
                   />
@@ -141,11 +149,10 @@ const AddContacts = () => {
                 </div>
                 <div className="flex items-center">
                   <input
-                    defaultChecked
                     id="default-radio-2"
                     type="radio"
-                    value=""
-                    name="default-radio"
+                    value="female"
+                    name="female"
                     className="w-4 h-4 "
                     {...register("gender")}
                   />
@@ -166,8 +173,9 @@ const AddContacts = () => {
               <select
                 className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 col-span-2"
                 {...register("profession")}
+                defaultValue="Choose Your Profession"
               >
-                <option disabled>Choose Profession</option>
+                <option disabled>Choose Your Profession</option>
                 <option>Graphics Designer</option>
                 <option>Web Designer</option>
                 <option>Web Developer</option>

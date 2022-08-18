@@ -11,22 +11,22 @@ const ContactCard = ({ contact }) => {
   };
   return (
     <div>
-      <div class="dark:bg-gray-900 flex flex-wrap items-center justify-center mt-4">
-        <div class="w-96 h-auto bg-white rounded-lg dark:bg-gray-800 shadow-xl transform duration-200 easy-in-out m-2 p-12">
-          <div class="text-center">
-            <div class="h-40 w-36 rounded-lg mx-auto">
+      <div className="dark:bg-gray-900 flex flex-wrap items-center justify-center mt-4">
+        <div className="w-96 h-auto bg-white rounded-lg dark:bg-gray-800 shadow-xl transform duration-200 easy-in-out m-2 p-12">
+          <div className="text-center">
+            <div className="h-40 w-36 rounded-lg mx-auto">
               <img alt={firstname} src={url} />
             </div>
           </div>
 
           <div className="text-center">
-            <h2 class="text-xl font-bold text-green-800 dark:text-gray-300">
+            <h2 className="text-xl font-bold text-green-800 dark:text-gray-300">
               {firstname + " " + lastname}
             </h2>
-            <p class="text-sm">{profession}</p>
-            <p class="text-sm">Gender : {gender}</p>
+            <p className="text-sm">{profession}</p>
+            <p className="text-sm">Gender : {gender}</p>
             <div className="text-sm">{email}</div>
-            <p class=" text-gray-600 dark:text-gray-300">{bio}</p>
+            <p className=" text-gray-600 dark:text-gray-300">{bio}</p>
           </div>
           <div className="flex mt-4 justify-evenly">
             <AiFillEye style={iconStyle} color="green"></AiFillEye>
