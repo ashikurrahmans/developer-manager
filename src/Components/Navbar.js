@@ -12,7 +12,7 @@ const Navbar = () => {
                 className="no-underline text-grey-darkest hover:text-black text-semibold"
                 to="/"
               >
-                Developers
+                DevelopersMen
               </Link>
             </h1>
           </div>

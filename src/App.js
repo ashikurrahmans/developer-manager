@@ -6,6 +6,7 @@ import Contacts from "./Components/Contacts";
 import AddContacts from "./Components/AddContacts";
 import Navbar from "./Components/Navbar";
 import "react-datepicker/dist/react-datepicker.css";
+import SingleContact from "./Components/SingleContact";
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="contacts" element={<Contacts />} />
-        <Route path="addcontacts" element={<AddContacts />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/addcontacts" element={<AddContacts />} />
+        <Route path="/contacts/:id" element={<SingleContact />} />
       </Routes>
     </>
   );

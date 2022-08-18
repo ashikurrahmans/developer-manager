@@ -31,7 +31,7 @@ const AddContacts = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {};
 
   useEffect(() => {
     setValue("dateOfBirth", startDate);
