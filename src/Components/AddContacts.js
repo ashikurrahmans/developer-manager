@@ -12,11 +12,13 @@ const AddContacts = () => {
     .object({
       firstName: yup.string().required("First Name is required"),
       lastName: yup.string().required("Last Name required"),
-      dateOfBirth: yup.date().required("Date of birth is required"),
       email: yup.string().email().required("Emaill Address is required"),
-      url: yup.string().url().nullable(),
-      phone: yup.number().required("Phone number is required"),
+      dateOfBirth: yup.date().required("Date of birth is required"),
+      phone: yup.string().required("Phone number is required"),
+      gender: yup.string().nullable(),
+      url: yup.string().url().nullable().required("Profile url is required"),
       profession: yup.string().required("Profession is required"),
+      messages: yup.string().required("bio is required"),
     })
     .required();
 
@@ -50,7 +52,7 @@ const AddContacts = () => {
                   </p>
                 )}
               </div>
-              <div className="">
+              <div>
                 <input
                   type="text"
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 "
@@ -58,43 +60,66 @@ const AddContacts = () => {
                   {...register("lastName")}
                 />
 
-                {errors?.lastName?.message}
+                {errors && (
+                  <p className="text-red-600 text-xs">
+                    {errors?.lastName?.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <input
+                  type="email"
+                  className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 col-span-2"
+                  placeholder="Email Address"
+                  {...register("email")}
+                />
+                {errors && (
+                  <p className="text-red-600 text-xs">
+                    {errors?.email?.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <input
+                  type="text"
+                  className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 "
+                  placeholder="Phone"
+                  {...register("phone")}
+                />
+                {errors && (
+                  <p className="text-red-600 text-xs">
+                    {errors?.phone?.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <DatePicker
+                  selected={startDate}
+                  placeholderText="Choose birthday"
+                  className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500"
+                  {...register("date")}
+                  maxDate={new Date()}
+                  showYearDropdown
+                  onChange={(date) => setStartDate(date)}
+                />
+                {errors && (
+                  <p className="text-red-600 text-xs">
+                    {errors?.date?.message}
+                  </p>
+                )}
               </div>
 
-              <input
-                type="email"
-                className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 col-span-2"
-                placeholder="Email Address"
-                {...register("email")}
-              />
-              {errors?.email?.message}
-
-              <DatePicker
-                selected={startDate}
-                placeholderText="Choose birthday"
-                className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 "
-                {...register("date")}
-                maxDate={new Date()}
-                showYearDropdown
-                onChange={(date) => setStartDate(date)}
-              />
-              {errors?.date?.message}
-
-              <input
-                type="phone"
-                className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 cols-span-2"
-                placeholder="Phone"
-                {...register("phone")}
-              />
-              {errors?.phone?.message}
-
-              <input
-                type="url"
-                className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 col-span-2"
-                placeholder="Profile picture url"
-                {...register("url")}
-              />
-              {errors?.url?.message}
+              <div>
+                <input
+                  type="url"
+                  className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 "
+                  placeholder="Profile picture url"
+                  {...register("url")}
+                />
+                {errors && (
+                  <p className="text-red-600 text-xs">{errors?.url?.message}</p>
+                )}
+              </div>
               <div className="grid grid-cols-3">
                 <h2 className="font-semibold"> Gender : </h2>
                 <div className="">
@@ -104,6 +129,7 @@ const AddContacts = () => {
                     value=""
                     name="default-radio"
                     className="w-4 "
+                    {...register("gender")}
                   />
 
                   <label
@@ -112,8 +138,6 @@ const AddContacts = () => {
                   >
                     Male
                   </label>
-
-                  {errors?.firstName?.message}
                 </div>
                 <div className="flex items-center">
                   <input
@@ -123,9 +147,8 @@ const AddContacts = () => {
                     value=""
                     name="default-radio"
                     className="w-4 h-4 "
+                    {...register("gender")}
                   />
-
-                  {errors?.firstName?.message}
 
                   <label
                     htmlFor="default-radio-2"
@@ -133,6 +156,11 @@ const AddContacts = () => {
                   >
                     Female
                   </label>
+                  {errors && (
+                    <p className="text-red-600 text-xs">
+                      {errors?.gender?.message}
+                    </p>
+                  )}
                 </div>
               </div>
               <select
@@ -146,16 +174,24 @@ const AddContacts = () => {
                 <option>Software Developer</option>
               </select>
 
-              {errors?.profession?.message}
+              {errors && (
+                <p className="text-red-600 text-xs">
+                  {errors?.profession?.message}
+                </p>
+              )}
 
               <textarea
                 cols="10"
                 rows="5"
                 className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 col-span-2"
                 placeholder="Write your message..."
-                {...register("message")}
+                {...register("messages")}
               ></textarea>
-              {errors?.message?.message}
+              {errors && (
+                <p className="text-red-600 text-xs">
+                  {errors?.messages?.message}
+                </p>
+              )}
             </div>
             <input
               type="submit"
