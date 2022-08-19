@@ -38,7 +38,7 @@ const ContactCard = ({ contact, deleteContact }) => {
           <h2 className="text-xl font-bold text-green-800 dark:text-gray-300">
             {fullName}
           </h2>
-          <p className="text-sm">{profession}</p>
+          <p className="text-sm ">{profession}</p>
           <p className="text-sm">Gender : {gender}</p>
           <p className="text-sm">
             birthday :
@@ -58,7 +58,6 @@ const ContactCard = ({ contact, deleteContact }) => {
             }}
           ></AiFillEye>
 
-          <FiEdit style={iconStyle}></FiEdit>
           <AiTwotoneDelete
             style={iconStyle}
             color="red"

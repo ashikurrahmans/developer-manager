@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import SingleContact from "./Components/SingleContact";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import EditContacts from "./Components/EditContacts";
 
 const ourcontacts = [
   {
@@ -16,8 +17,8 @@ const ourcontacts = [
     firstName: "Ashikur",
     lastName: "Rahman",
     email: "ashiqur.dream@gmail.com",
-    dateOfBirth: "2/8/1998",
-    profession: "Developer",
+    dateOfBirth: "2/1/1930",
+    profession: "Web Developer",
     url: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/774820f95c86aaee377a2c8c3fa5610d-1562010854461/040bb0c3-0030-4224-a49c-90d4a89f866f.jpg",
     gender: "male",
     bio: "Hello how are you?",
@@ -27,8 +28,8 @@ const ourcontacts = [
     firstName: "Rahul",
     lastName: "Rahman",
     email: "rahul.dream@gmail.com",
-    dateOfBirth: "2/8/1998",
-    profession: "Software",
+    dateOfBirth: "2/3/200",
+    profession: "Software Developer",
     url: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/774820f95c86aaee377a2c8c3fa5610d-1562010854461/040bb0c3-0030-4224-a49c-90d4a89f866f.jpg",
     gender: "male",
     bio: "Hello how are you?",
@@ -38,8 +39,8 @@ const ourcontacts = [
     firstName: "Sofiqur",
     lastName: "Rahman",
     email: "sofiqur@gmail.com",
-    dateOfBirth: "2/8/1998",
-    profession: "Developer",
+    dateOfBirth: "1/8/1995",
+    profession: "Web Developer",
     url: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/774820f95c86aaee377a2c8c3fa5610d-1562010854461/040bb0c3-0030-4224-a49c-90d4a89f866f.jpg",
     gender: "male",
     bio: "Hello how are you?",
@@ -49,8 +50,8 @@ const ourcontacts = [
     firstName: "Sadekur",
     lastName: "Rahman",
     email: "sadequr@gmail.com",
-    dateOfBirth: "2/8/1998",
-    profession: "Developer",
+    dateOfBirth: "2/4/1991",
+    profession: "Web Developer",
     url: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/774820f95c86aaee377a2c8c3fa5610d-1562010854461/040bb0c3-0030-4224-a49c-90d4a89f866f.jpg",
     gender: "male",
     bio: "Hello how are you?",
@@ -60,8 +61,8 @@ const ourcontacts = [
     firstName: "Pabel",
     lastName: "Hasan",
     email: "pabelhasan@gmail.com",
-    dateOfBirth: "2/8/1998",
-    profession: "Developer",
+    dateOfBirth: "2/8/1992",
+    profession: "Graphics Designer",
     url: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/774820f95c86aaee377a2c8c3fa5610d-1562010854461/040bb0c3-0030-4224-a49c-90d4a89f866f.jpg",
     gender: "male",
     bio: "Hello how are you?",
@@ -71,10 +72,10 @@ const ourcontacts = [
     firstName: "Shaon",
     lastName: "Rahman",
     email: "shaon@gmail.com",
-    dateOfBirth: "2/8/1998",
-    profession: "Developer",
+    dateOfBirth: "2/8/1994",
+    profession: "Web Designer",
     url: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/774820f95c86aaee377a2c8c3fa5610d-1562010854461/040bb0c3-0030-4224-a49c-90d4a89f866f.jpg",
-    gender: "male",
+    gender: "female",
     bio: "Hello how are you?",
   },
 ];
@@ -85,6 +86,10 @@ function App() {
   const deleteContact = (id) => {
     const deleteContact = contacts.filter((contact) => contact.id !== id);
     setContacts(deleteContact);
+  };
+
+  const updateContact = (id) => {
+    console.log(id);
   };
 
   const addContact = (contact) => {
@@ -110,11 +115,16 @@ function App() {
         <Route
           path="/addcontacts"
           element={<AddContacts addContact={addContact} />}
-        />
+        />{" "}
+        <Route path="/editcontacts/:id" element={<EditContacts />} />
         <Route
           path="/contacts/:id"
           element={
-            <SingleContact contacts={contacts} deleteContact={deleteContact} />
+            <SingleContact
+              contacts={contacts}
+              deleteContact={deleteContact}
+              updateContact={updateContact}
+            />
           }
         />
       </Routes>
