@@ -13,8 +13,8 @@ import { useState } from "react";
 const ourcontacts = [
   {
     id: "1",
-    firstname: "Ashikur",
-    lastname: "Rahman",
+    firstName: "Ashikur",
+    lastName: "Rahman",
     email: "ashiqur.dream@gmail.com",
     dateOfBirth: "2/8/1998",
     profession: "Developer",
@@ -24,8 +24,8 @@ const ourcontacts = [
   },
   {
     id: "2",
-    firstname: "Rahul",
-    lastname: "Rahman",
+    firstName: "Rahul",
+    lastName: "Rahman",
     email: "rahul.dream@gmail.com",
     dateOfBirth: "2/8/1998",
     profession: "Software",
@@ -35,8 +35,8 @@ const ourcontacts = [
   },
   {
     id: "3",
-    firstname: "Sofiqur",
-    lastname: "Rahman",
+    firstName: "Sofiqur",
+    lastName: "Rahman",
     email: "sofiqur@gmail.com",
     dateOfBirth: "2/8/1998",
     profession: "Developer",
@@ -46,8 +46,8 @@ const ourcontacts = [
   },
   {
     id: "4",
-    firstname: "Sadekur",
-    lastname: "Rahman",
+    firstName: "Sadekur",
+    lastName: "Rahman",
     email: "sadequr@gmail.com",
     dateOfBirth: "2/8/1998",
     profession: "Developer",
@@ -57,8 +57,8 @@ const ourcontacts = [
   },
   {
     id: "5",
-    firstname: "Pabel",
-    lastname: "Hasan",
+    firstName: "Pabel",
+    lastName: "Hasan",
     email: "pabelhasan@gmail.com",
     dateOfBirth: "2/8/1998",
     profession: "Developer",
@@ -68,8 +68,8 @@ const ourcontacts = [
   },
   {
     id: "6",
-    firstname: "Shaon",
-    lastname: "Rahman",
+    firstName: "Shaon",
+    lastName: "Rahman",
     email: "shaon@gmail.com",
     dateOfBirth: "2/8/1998",
     profession: "Developer",

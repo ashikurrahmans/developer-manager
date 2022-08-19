@@ -5,20 +5,55 @@ import * as yup from "yup";
 import DatePicker from "react-datepicker";
 
 // Form Validation
-const AddContacts = ({ AddContact }) => {
+const AddContacts = ({ addContact }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const schema = yup
     .object({
-      firstName: yup.string().required("First Name is required"),
-      lastName: yup.string().required("Last Name required"),
-      email: yup.string().email().required("Emaill Address is required"),
+      firstName: yup
+        .string()
+        .required("FirstName is Required")
+        .min(3, "FirstName must be 3 or more in length "),
+
+      lastName: yup
+        .string()
+        .required("LastName is Required")
+        .min(3, "LastName must be 3 or more in length "),
+
+      email: yup
+        .string()
+        .required("email is Required")
+        .email("Must be a valid email"),
+
       dateOfBirth: yup.date().required("Date of birth is required"),
-      phone: yup.string().required("Phone number is required"),
-      gender: yup.string().nullable(),
-      url: yup.string().url().nullable().required("Profile url is required"),
-      profession: yup.string().required("Profession is required"),
-      messages: yup.string().required("bio is required"),
+      phone: yup
+        .string()
+        .min(11, "Minimum 11 charecter number")
+        .max(11, "Maximum 11 charecter")
+        .required("Phone number is required"),
+      gender: yup
+        .mixed()
+        .required("Gender is required")
+        .oneOf(["male", "female"]),
+      url: yup
+        .string()
+        .required("profile Image URL is Required")
+        .url("Must be a valid URL"),
+      profession: yup
+        .string()
+        .required("Profession is Required")
+        .oneOf([
+          "Graphics Designer",
+          "Web Designer",
+          "Web Develoepr",
+          "Software Developer",
+        ])
+        .min(3, "Profession must be 3 or more in length "),
+      bio: yup
+        .string()
+        .required("Bio is Required")
+        .min(10, "Bio must be 10 or more in length ")
+        .max(300, "Bio must be equal or less thant 300 character"),
     })
     .required();
 
@@ -32,7 +67,7 @@ const AddContacts = ({ AddContact }) => {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data) => {
-    AddContact(data);
+    addContact(data);
   };
 
   useEffect(() => {
@@ -46,9 +81,10 @@ const AddContacts = ({ AddContact }) => {
         lastName: "",
         email: "",
         profession: "",
-        messages: "",
         phone: "",
+        dateOfBirth: "",
         url: "",
+        bio: "",
       });
     }
   });
@@ -63,6 +99,7 @@ const AddContacts = ({ AddContact }) => {
               <div>
                 <input
                   type="text"
+                  name="firstName"
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500"
                   placeholder="First Name"
                   {...register("firstName")}
@@ -76,6 +113,7 @@ const AddContacts = ({ AddContact }) => {
               <div>
                 <input
                   type="text"
+                  name="lastName"
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 "
                   placeholder="Last Name"
                   {...register("lastName")}
@@ -209,12 +247,10 @@ const AddContacts = ({ AddContact }) => {
                 rows="5"
                 className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 col-span-2"
                 placeholder="Write your message..."
-                {...register("messages")}
+                {...register("bio")}
               ></textarea>
               {errors && (
-                <p className="text-red-600 text-xs">
-                  {errors?.messages?.message}
-                </p>
+                <p className="text-red-600 text-xs">{errors?.bio?.message}</p>
               )}
             </div>
             <input
