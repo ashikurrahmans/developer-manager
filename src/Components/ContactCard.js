@@ -4,7 +4,7 @@ import { FiEdit } from "react-icons/fi";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-const ContactCard = ({ contact, deleteContact, viewSingleContact }) => {
+const ContactCard = ({ contact, deleteContact }) => {
   const { id, firstname, lastname, email, profession, gender, bio, url } =
     contact;
   const navigate = useNavigate();
@@ -36,7 +36,9 @@ const ContactCard = ({ contact, deleteContact, viewSingleContact }) => {
           <AiFillEye
             style={iconStyle}
             color="green"
-            onClick={navigate(`/contacts/${id}`)}
+            onClick={() => {
+              navigate(`/contacts/${id}`);
+            }}
           ></AiFillEye>
 
           <FiEdit style={iconStyle}></FiEdit>
