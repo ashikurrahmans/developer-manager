@@ -5,7 +5,7 @@ import * as yup from "yup";
 import DatePicker from "react-datepicker";
 
 // Form Validation
-const AddContacts = ({ AddContacts }) => {
+const AddContacts = ({ AddContact }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const schema = yup
@@ -32,7 +32,7 @@ const AddContacts = ({ AddContacts }) => {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data) => {
-    AddContacts(data);
+    AddContact(data);
   };
 
   useEffect(() => {
