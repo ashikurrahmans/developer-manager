@@ -24,9 +24,6 @@ const ContactCard = ({ contact, deleteContact }) => {
     cursor: "pointer",
   };
   const fullName = firstName + " " + lastName;
-  console.log(fullName);
-  console.log(lastName);
-  console.log(firstName);
 
   return (
     <div className="dark:bg-gray-900 flex flex-wrap items-center justify-center mt-4">
@@ -44,7 +41,7 @@ const ContactCard = ({ contact, deleteContact }) => {
           <p className="text-sm">{profession}</p>
           <p className="text-sm">Gender : {gender}</p>
           <p className="text-sm">
-            birthday :{" "}
+            birthday :
             {dateOfBirth instanceof Object
               ? format(dateOfBirth, "dd/MM/yyyy")
               : dateOfBirth}

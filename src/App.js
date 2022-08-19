@@ -111,7 +111,12 @@ function App() {
           path="/addcontacts"
           element={<AddContacts addContact={addContact} />}
         />
-        <Route path="/contacts/:id" element={<SingleContact />} />
+        <Route
+          path="/contacts/:id"
+          element={
+            <SingleContact contacts={contacts} deleteContact={deleteContact} />
+          }
+        />
       </Routes>
     </>
   );
