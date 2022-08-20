@@ -1,6 +1,5 @@
 import React from "react";
 import { AiFillEye } from "react-icons/ai";
-import { FiEdit } from "react-icons/fi";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -13,6 +12,7 @@ const ContactCard = ({ contact, deleteContact }) => {
     email,
     profession,
     gender,
+    phone,
     bio,
     url,
     dateOfBirth,
@@ -40,6 +40,7 @@ const ContactCard = ({ contact, deleteContact }) => {
           </h2>
           <p className="text-sm ">{profession}</p>
           <p className="text-sm">Gender : {gender}</p>
+          <p className="text-sm">Phone : {phone}</p>
           <p className="text-sm">
             birthday :
             {dateOfBirth instanceof Object

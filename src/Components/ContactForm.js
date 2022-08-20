@@ -103,8 +103,7 @@ const ContactForm = ({ addContact, singleContact }) => {
     url: singleContact?.url,
   };
 
-  console.log(defaultValue.url);
-  console.log(defaultValue.profession, defaultValue.dateOfBirth);
+  console.log(defaultValue.phone);
 
   return (
     <div>
@@ -161,8 +160,8 @@ const ContactForm = ({ addContact, singleContact }) => {
               </div>
               <div>
                 <input
-                  type="text"
-                  id="phone"
+                  type="number"
+                  id="text"
                   defaultValue={defaultValue.phone}
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 "
                   placeholder="Phone"
@@ -207,7 +206,7 @@ const ContactForm = ({ addContact, singleContact }) => {
               </div>
               <div className="grid grid-cols-3">
                 <h2 className="font-semibold"> Gender : </h2>
-                <div className="">
+                <div>
                   <input
                     id="default-radio-1"
                     type="radio"

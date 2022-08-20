@@ -15,6 +15,7 @@ const SingleContact = ({ contacts, deleteContact, updateContact }) => {
     lastName,
     profession,
     gender,
+    phone,
     dateOfBirth,
     email,
     bio,
@@ -44,6 +45,7 @@ const SingleContact = ({ contacts, deleteContact, updateContact }) => {
           </h2>
           <p className="text-sm">{profession}</p>
           <p className="text-sm">Gender : {gender}</p>
+          <p className="text-sm">Phone : {phone}</p>
           <p className="text-sm">
             birthday :
             {dateOfBirth instanceof Object
