@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DatePicker from "react-datepicker";
+import { usersContext } from "./contextapi/UserContext";
 
 // Form Validation
-const ContactForm = ({ addContact, singleContact }) => {
-  const [startDate, setStartDate] = useState(new Date());
+const ContactForm = ({ singleContact }) => {
+  const { addContact } = useContext(usersContext);
 
   const schema = yup
     .object({
       firstName: yup
         .string()
         .required("FirstName is Required")
-        .min(3, "FirstName must be 3 or more in length "),
+        .min(3, "FirstName must be 3 or more in length"),
 
       lastName: yup
         .string()
@@ -71,10 +72,6 @@ const ContactForm = ({ addContact, singleContact }) => {
   };
 
   useEffect(() => {
-    setValue("dateOfBirth", startDate);
-  });
-
-  useEffect(() => {
     if (isSubmitSuccessful) {
       reset({
         firstName: "",
@@ -103,7 +100,14 @@ const ContactForm = ({ addContact, singleContact }) => {
     url: singleContact?.url,
   };
 
-  console.log(defaultValue.phone);
+  // Date of Birth State manage
+  const [startDate, setStartDate] = useState(
+    defaultValue.dateOfBirth ? defaultValue.dateOfBirth : new Date()
+  );
+
+  useEffect(() => {
+    setValue("dateOfBirth", startDate);
+  });
 
   return (
     <div>
@@ -117,7 +121,7 @@ const ContactForm = ({ addContact, singleContact }) => {
                 <input
                   type="text"
                   name="firstName"
-                  defaultValue={defaultValue.firstName}
+                  defaultValue={defaultValue?.firstName}
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500"
                   placeholder="First Name"
                   {...register("firstName")}
@@ -147,7 +151,7 @@ const ContactForm = ({ addContact, singleContact }) => {
               <div>
                 <input
                   type="email"
-                  defaultValue={defaultValue.email}
+                  defaultValue={defaultValue?.email}
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 col-span-2"
                   placeholder="Email Address"
                   {...register("email")}
@@ -160,9 +164,9 @@ const ContactForm = ({ addContact, singleContact }) => {
               </div>
               <div>
                 <input
-                  type="number"
+                  type="text"
                   id="text"
-                  defaultValue={defaultValue.phone}
+                  defaultValue={defaultValue?.phone}
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 "
                   placeholder="Phone"
                   {...register("phone")}
@@ -178,7 +182,7 @@ const ContactForm = ({ addContact, singleContact }) => {
                   selected={startDate}
                   id="dateOfBirth"
                   name="dateOfBirth"
-                  defaultValue={defaultValue.dateOfBirth}
+                  defaultValue={Date.parse(startDate)}
                   placeholderText="Choose birthday"
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500"
                   {...register("date")}
@@ -195,7 +199,8 @@ const ContactForm = ({ addContact, singleContact }) => {
 
               <div>
                 <input
-                  type="url"
+                  type="text"
+                  defaultValue={defaultValue?.url}
                   className="border border-gray-500 px-4 py-2 focus:outline-none focus:border-purple-500 "
                   placeholder="Profile picture url"
                   {...register("url")}

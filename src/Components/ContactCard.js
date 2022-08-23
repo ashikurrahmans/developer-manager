@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
+import { usersContext } from "./contextapi/UserContext";
 
-const ContactCard = ({ contact, deleteContact }) => {
+const ContactCard = ({ contact }) => {
+  const { deleteContact } = useContext(usersContext);
   const {
     id,
     firstName,
